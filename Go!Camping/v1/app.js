@@ -12,17 +12,17 @@ app.set("view engine", "ejs");
 
  var campgrounds =[
        {name: "Naija Creek",  image:"images/1.png"},
-       {name: "Salmon Creek", image:"images/2.png"},
-       {name: "Benin Creek",  image:"images/3.png"},
-       {name: "Naija Creek",  image:"images/4.png"},
-       {name: "Salmon Creek", image:"images/5.png"},
-       {name: "Benin Creek",  image:"images/6.png"},
-       {name: "Naija Creek",  image:"images/7.png"},
-       {name: "Salmon Creek", image:"images/8.png"},
-       {name: "Benin Creek",  image:"images/9.png"},
+       {name: "Salmon Creek", image:"images/1.png"},
+       {name: "Benin Creek",  image:"images/1.png"},
        {name: "Naija Creek",  image:"images/1.png"},
-       {name: "Salmon Creek", image:"images/2.png"},
-       {name: "Benin Creek",  image:"images/3.png"}
+       {name: "Salmon Creek", image:"images/1.png"},
+       {name: "Benin Creek",  image:"images/1.png"},
+       {name: "Naija Creek",  image:"images/1.png"},
+       {name: "Salmon Creek", image:"images/1.png"},
+       {name: "Benin Creek",  image:"images/1.png"},
+       {name: "Naija Creek",  image:"images/1.png"},
+       {name: "Salmon Creek", image:"images/1.png"},
+       {name: "Benin Creek",  image:"images/1.png"}
   ];
 
 
