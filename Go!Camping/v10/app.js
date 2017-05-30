@@ -18,18 +18,18 @@ var commentRoutes    = require('./routes/comments'),
     indexRoutes      = require('./routes/index');
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + "/public"));
-app.use(methodOverride("_method"));
-//default view engines
-app.set("view engine", "ejs");
-
-
-
 // Connect to database
 var db = mongoose.connect("mongodb://127.0.0.1:27017/GO_Camping", function(err) {
     (err) ? console.error(err, 'Error Connecting to Database!'):console.log('Database Connected Successfully. Build Safely!')
 });
+    
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+//default view engines
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 
 // seedDB();  // seed database 
 
