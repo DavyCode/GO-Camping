@@ -58,8 +58,6 @@ router.get('/:id/edit', (req, res) => {
             res.render("campgrounds/edit", { campground: foundCampground });
         }
     })
-   res.render('campgrounds/edit', {campground: foundCampground});
-
 });
 
 // Update Campground routes

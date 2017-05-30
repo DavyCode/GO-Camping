@@ -14,7 +14,7 @@ router.get("/", function(req, res) {
 // Auth Routes
 // ====================
 
-router.get('/register', (req, res) => {
+router.get('/register', (req, res) => { 
     res.render('register');
 
 });
