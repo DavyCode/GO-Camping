@@ -4,6 +4,7 @@ var express = require("express"),
     Campground = require("./models/campground"),
     seedDB = require("./seeds"),
     passport = require('passport'),
+    methodOverride = require('method-override'),
     LocalStrategy = require('passport-local'),
     User = require('./models/user'),
     app = express();
@@ -19,6 +20,7 @@ var commentRoutes    = require('./routes/comments'),
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 //default view engines
 app.set("view engine", "ejs");
 

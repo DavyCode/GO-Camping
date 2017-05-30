@@ -47,6 +47,7 @@ router.get("/:id", function(req, res) {
 });
 
 
+
 //login middleware
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
