@@ -18,7 +18,7 @@ router.get("/", function(req, res) {
 router.post("/", isLoggedIn, function(req, res) {
     console.log("you hit the post route!!");
     //get data from form add to campgrounds page
-    var name = req.body.campName;
+    var name = req.body.name;
     var image = req.body.image;
     var desc = req.body.description;
     var author ={
@@ -45,6 +45,31 @@ router.get("/:id", function(req, res) {
             res.render("campgrounds/show", { campground: foundCampground });
     });
 });
+
+
+
+
+// Edit Campground  routes
+router.get('/:id/edit', (req, res) => {
+    Campground.findById(req.params.id, (err, foundCampground) => {
+        if(err){
+            res.redirect('/campground')
+        }else{
+            res.render("campgrounds/edit", { campground: foundCampground });
+        }
+    })
+   res.render('campgrounds/edit', {campground: foundCampground});
+
+});
+
+// Update Campground routes
+
+
+router.put('/id', (req, res) => {
+    //find and update selected campground
+    // redirect to show page
+})
+
 
 
 
