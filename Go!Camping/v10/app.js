@@ -63,6 +63,7 @@ app.use('/campground',campgroundRoutes);
 
 
 
+
 app.listen(3000, function() {
     console.log("GO!Camping app started");
 });
