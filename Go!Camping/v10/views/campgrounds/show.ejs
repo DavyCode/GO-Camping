@@ -18,18 +18,18 @@
                         <h4><a href=""><%=campground.name%></a></h4>
                         <p><%=campground.description%></p>
                         <p><em>Submitted By <%=campground.author.username%></em></p>  
-                         <a class="btn btn-warning" href="/campground/<%= campground._id%>/edit">Edit Camp</button></a> 
+                         <a class="btn btn-xs btn-warning" href="/campground/<%= campground._id%>/edit">Edit Camp</button></a> 
                         
                          <!--delete form-->
                          
                          <form id="delete-form" action="/campground/<%= campground._id %>?_method=DELETE" method="POST" role="form">
-                            <button class="btn btn-danger">Delete camp</button>
+                            <button class="btn btn-xs btn-danger">Delete camp</button>
                          </form>
                     </div>
                 </div>
                 <div class="well">
                     <div class="text-right">
-                        <a class="btn btn-success" href="/campground/<%=campground._id %>/comment/new">Add New Comment</a>
+                        <a class="btn btn-xs btn-success" href="/campground/<%=campground._id %>/comment/new">Add New Comment</a>
                     </div>
                     <hr>
                     <%  campground.comment.forEach(function(comment){ %>
