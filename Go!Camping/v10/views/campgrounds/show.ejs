@@ -25,17 +25,14 @@
                          <form action="/campground/<%= campground._id %>" method="POST" role="form">
                             <button class="btn btn-danger">Delete camp</button>
                          </form>
-                         
-
                     </div>
-
                 </div>
                 <div class="well">
                     <div class="text-right">
                         <a class="btn btn-success" href="/campground/<%=campground._id %>/comment/new">Add New Comment</a>
                     </div>
                     <hr>
-                    <%  campground.comment.forEach(function(comment){%>
+                    <%  campground.comment.forEach(function(comment){ %>
                         <div class="row">
                             <div class="col-md-12">
                                 <strong><%= comment.author.username%></strong>
