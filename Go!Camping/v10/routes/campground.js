@@ -50,29 +50,10 @@ router.get("/:id", function(req, res) {
 
 
 // Edit Campground  routes
-router.get('/:id/edit', (req, res) => {
-    //is user logged in?
-        if(req.isAuthenticated()){
+router.get('/:id/edit', checkCampgroundOwnership, (req, res) => {
             Campground.findById(req.params.id, (err, foundCampground) => {
-                if(err){
-                    res.redirect('/campground')
-                }else{
-                    //does user own the campground?
-                    if(foundCampground.author.id.equals(req.user._id)){
-                         res.render("campgrounds/edit", { campground: foundCampground });
-                    }else{
-                        res.send('You do not permission to edit this camp')
-                    }
-                  }
+                res.render("campgrounds/edit", { campground: foundCampground });
             });
-        }else {
-            console.log('You must be logged in to edit this campground');
-            res.send('LOGIN TO EDIT THIS CAMP')
-        }
-       
-       //otherwise, redirect
-    //if not, redirect
-    
 });
 
 
@@ -102,6 +83,34 @@ router.put('/:id', (req, res) => {
          }
      });
  });
+
+
+// Check campground ownership middleware
+
+function checkCampgroundOwnership(req, res, next){
+     //is user logged in?
+        if(req.isAuthenticated()){
+            Campground.findById(req.params.id, (err, foundCampground) => {
+                if(err){
+                    res.redirect('back');
+                }else{
+                    //does user own the campground?
+                    if(foundCampground.author.id.equals(req.user._id)){
+                        next();
+                    }else{
+                        res.redirect('back');
+                    }
+                  }
+            });
+        }else {
+            console.log('You must be logged in to edit this campground');
+            res.redirect('back')
+        }
+       
+       //otherwise, redirect
+    //if not, redirect
+    
+}
 
 //login middleware
 function isLoggedIn(req, res, next) {
