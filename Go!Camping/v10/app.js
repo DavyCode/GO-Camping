@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //default view engines
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+
 app.use(methodOverride("_method"));
 
 // seedDB();  // seed database 
@@ -54,7 +55,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
     res.locals.currentUser =req.user;
     next();
-})
+});
 
 //use routes
 app.use('/',indexRoutes);
