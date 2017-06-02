@@ -59,7 +59,7 @@ router.get('/:id/edit', checkCampgroundOwnership, (req, res) => {
 
 
 // Update Campground routes
-router.put('/:id', (req, res) => {
+router.put('/:id', checkCampgroundOwnership, (req, res) => {
     //find and update selected campground
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
         if(err){
@@ -74,7 +74,7 @@ router.put('/:id', (req, res) => {
 
 
 // DESTROY CAMPGROUND ROUTE
- router.delete('/:id', (req, res) => {
+ router.delete('/:id', checkCampgroundOwnership, (req, res) => {
      Campground.findByIdAndRemove(req.params.id, (err) => {
          if(err){
              res.redirect('/campground');
@@ -84,6 +84,10 @@ router.put('/:id', (req, res) => {
      });
  });
 
+
+// ===================
+// MIDDLEWARE
+// ========================
 
 // Check campground ownership middleware
 
@@ -97,19 +101,18 @@ function checkCampgroundOwnership(req, res, next){
                     //does user own the campground?
                     if(foundCampground.author.id.equals(req.user._id)){
                         next();
+                    //otherwise, redirect
                     }else{
+                    
                         res.redirect('back');
                     }
                   }
             });
+            //if not, redirect
         }else {
             console.log('You must be logged in to edit this campground');
             res.redirect('back')
-        }
-       
-       //otherwise, redirect
-    //if not, redirect
-    
+        }  
 }
 
 //login middleware
