@@ -18,7 +18,6 @@
 * Add Edit button
 * Add Update route
 
-
 #Deleting Comments
 * Add Destroy route
 * Add Delete button

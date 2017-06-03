@@ -1,5 +1,5 @@
-var express = require ('express'),
-    router = express.Router({mergeParams: true}),
+var express = require('express'),
+    router = express.Router({ mergeParams: true }),
     Campground = require("../models/campground"),
     Comment = require("../models/comment");
 
@@ -42,6 +42,14 @@ router.post("/", isLoggedIn, (req, res) => {
     })
 });
 
+
+
+//edit comment route
+router.get('/:comment_id/edit', (req, res) => {
+    res.render('comments/edit');
+})
+
+
 //login middleware
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
@@ -54,4 +62,4 @@ function isLoggedIn(req, res, next) {
 
 
 
-module.exports= router;
+module.exports = router;
