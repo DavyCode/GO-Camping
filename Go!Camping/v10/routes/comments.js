@@ -68,6 +68,12 @@ router.put('/:comment_id', (req, res) => {
 })
 
 
+// Comment destroy route
+router.delete('/:commemt_id', (req, res) => {
+    //  findByIdAndRemove  
+
+})
+
 //login middleware
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
