@@ -71,8 +71,15 @@ router.put('/:comment_id', (req, res) => {
 // Comment destroy route
 router.delete('/:commemt_id', (req, res) => {
     //  findByIdAndRemove  
-
-})
+    Comment.findByIdAndRemove(req.params.comment_id, (err) => {
+        if (err) {
+            res.redirect('back');
+        } else {
+            res.redirect('/campground/' + req.params.id);
+            console.log('ooh comment deleted!!!!');
+        };
+    });
+});
 
 //login middleware
 function isLoggedIn(req, res, next) {
