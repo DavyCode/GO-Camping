@@ -28,6 +28,7 @@ router.post('/register', (req, res) => {
             return res.render('register');
         }
         passport.authenticate('local')(req, res, () => {
+            req.flash('success', "Welcome to GO!Camping" + user.username);
             res.redirect('/campground');
         });
     });
@@ -54,16 +55,6 @@ router.get('/logout', (req, res) => {
     req.flash('success', "Logged You Out")
     res.redirect('/campground');
 })
-
-// //login middleware
-// function isLoggedIn(req, res, next) {
-//     if (req.isAuthenticated()) {
-//         return next();
-//     }
-//     res.redirect('/login');
-// }
-
-
 
 
 module.exports = router;
