@@ -22,15 +22,29 @@
                     <li class="active"><a href="/campground">Campgrounds</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                   <% if(!currentUser){%>
-                    <li><a href="/register">Sign Up</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <%}else{%>
-                    <li><a href="#"> Logged In As <%= currentUser.username%> </a></li>
-                    <li><a href="/logout">Logout</a></li>
-                    <%}%>
-                    <li><a href="">Contact Us</a></li>
+                    <% if(!currentUser){%>
+                        <li><a href="/register">Sign Up</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <%}else{%>
+                            <li><a href="#"> Logged In As <%= currentUser.username%> </a></li>
+                            <li><a href="/logout">Logout</a></li>
+                            <%}%>
+                                <li><a href="">Contact Us</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
+
+    <div class="container">
+        <% if(error && error.length >0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%=error %>
+            </div>
+            <%}%>
+                <% if(success && success.length >0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%=success %>
+                    </div>
+                    <%}%>
+    </div>

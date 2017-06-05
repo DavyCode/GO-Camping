@@ -1,4 +1,4 @@
-var express = require ('express'),
+var express = require('express'),
     router = express.Router(),
     passport = require('passport'),
     User = require('../models/user');
@@ -14,7 +14,7 @@ router.get("/", function(req, res) {
 // Auth Routes
 // ====================
 
-router.get('/register', (req, res) => { 
+router.get('/register', (req, res) => {
     res.render('register');
 
 });
@@ -24,7 +24,7 @@ router.post('/register', (req, res) => {
     var newUser = new User({ username: req.body.username });
     User.register(newUser, req.body.password, (err, user) => {
         if (err) {
-            console.log(err);
+            req.flash('error', err);
             return res.render('register');
         }
         passport.authenticate('local')(req, res, () => {
@@ -51,16 +51,17 @@ router.post('/login', passport.authenticate('local', {
 //Logout route
 router.get('/logout', (req, res) => {
     req.logout();
+    req.flash('success', "Logged You Out")
     res.redirect('/campground');
 })
 
-//login middleware
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/login');
-}
+// //login middleware
+// function isLoggedIn(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         return next();
+//     }
+//     res.redirect('/login');
+// }
 
 
 
