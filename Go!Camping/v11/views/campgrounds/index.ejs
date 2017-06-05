@@ -1,0 +1,39 @@
+<% include ../partials/header%>
+
+    <div class="container">
+        <header class="jumbotron">
+            <div class="container">
+                <h1>Welcome to GO!Camping</h1>
+                <p> View our magnificient Campgrounds from all over Nigeria</p>
+                <a href="/campground/new" class="btn btn-primary btn-lg">Add New Campground</a>
+            </div>
+        </header>
+
+        <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+            <% campground.forEach(function(campground){%>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        <img src="<%=campground.image%>">
+                        <div class="caption">
+                            <h3>
+                                <%= campground.name %>
+                            </h3>
+                        </div>
+                        <p>
+                            <a href="/campground/<%= campground._id%>" class="btn btn-primary">More info</a>
+                        </P>
+                    </div>
+                </div>
+                <%});%>
+        </div>
+
+
+
+
+
+
+
+        <% include ../partials/footer%>
+
+
+    </div>
