@@ -52,11 +52,14 @@
                                 <p>
                                     <%=comment.text%>
                                 </p>
-                                <a class="btn btn-xs btn-warning" href="/campground/<%=campground._id %>/comment/<%=comment._id %>/edit">Edit</a>
-                                <form id="delete-form" action="/campground/<%=campground._id %>/comment/<%=comment._id %>?_method=DELETE" method="POST" role="form">
-                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                </form>
-
+                                <% if(currentUser && comment.author.id.equals(currentUser._id)){%>
+                                    <!--Edit button-->
+                                    <a class="btn btn-xs btn-warning" href="/campground/<%=campground._id %>/comment/<%=comment._id %>/edit">
+                                Edit</a>
+                                    <form id="delete-form" action="/campground/<%=campground._id %>/comment/<%=comment._id %>?_method=DELETE" method="POST" role="form">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                    </form>
+                                    <%}%>
                             </div>
                         </div>
                         <% }) %>
