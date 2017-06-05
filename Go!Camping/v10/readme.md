@@ -8,7 +8,7 @@
 * Add Destroy Route
 * Add Delete Button
 
-# Authorization 
+# Authorization I : Campgrounds
 * User can only edit his/her campgrounds
 * User can only delete his/her campgrounds
 * Hide/Show edit and delete buttons
@@ -27,3 +27,9 @@
 
 <!--Campground Destroy Route: campground/:id-->
 <!--Comment Destroy Route:  campground/:id/comment/:comment_id-->
+
+# Authorization II : Comments
+* User can only edit his/her comments
+* User can only delete his/her comments
+* Hide/Show edit and delete button
+* Refactor Middleware

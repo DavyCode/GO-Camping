@@ -31,7 +31,6 @@ router.post("/", isLoggedIn, (req, res) => {
                     comment.author.username = req.user.username;
                     //save comment
                     comment.save();
-                    console.log(comment);
                     campground.comment.push(comment);
                     campground.save();
                     res.redirect("/campground/" + campground._id);
@@ -39,13 +38,13 @@ router.post("/", isLoggedIn, (req, res) => {
                 }
             })
         }
-    })
+    });
 });
 
 
 
-//edit comment route
-router.get('/:comment_id/edit', (req, res) => {
+// Comment Edit Route
+router.get('/:comment_id/edit', checkCommentOwnership, (req, res) => {
     Comment.findById(req.params.comment_id, (err, foundComment) => {
         if (err) {
             res.redirect('back');
@@ -57,19 +56,19 @@ router.get('/:comment_id/edit', (req, res) => {
 });
 
 // Comment Update  
-router.put('/:comment_id', (req, res) => {
-    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, updatedCampground) => {
+router.put('/:comment_id', checkCommentOwnership, (req, res) => {
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, updatedComment) => {
         if (err) {
             res.redirect('back');
         } else {
             res.redirect('/campground/' + req.params.id);
         }
-    })
-})
+    });
+});
 
 
-// Comment destroy route
-router.delete('/:commemt_id', (req, res) => {
+// Comment Destroy Route
+router.delete('/:comment_id', checkCommentOwnership, (req, res) => {
     //  findByIdAndRemove  
     Comment.findByIdAndRemove(req.params.comment_id, (err) => {
         if (err) {
@@ -80,6 +79,40 @@ router.delete('/:commemt_id', (req, res) => {
         };
     });
 });
+
+
+
+// ===================
+// MIDDLEWARE
+// ========================
+
+// Check campground ownership middleware
+
+function checkCommentOwnership(req, res, next) {
+    //is user logged in?
+    if (req.isAuthenticated()) {
+        Comment.findById(req.params.comment_id, (err, foundComment) => {
+            if (err) {
+                res.redirect('back');
+            } else {
+                //does user own the comment?
+                if (foundComment.author.id.equals(req.user._id)) {
+                    next();
+                    //otherwise, redirect
+                } else {
+                    res.redirect('back');
+                }
+            }
+        });
+        //if not, redirect
+    } else {
+        console.log('You must be logged in to edit this campground');
+        res.redirect('back')
+    }
+}
+
+
+
 
 //login middleware
 function isLoggedIn(req, res, next) {
