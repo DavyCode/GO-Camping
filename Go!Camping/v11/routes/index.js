@@ -28,7 +28,7 @@ router.post('/register', (req, res) => {
             return res.render('register');
         }
         passport.authenticate('local')(req, res, () => {
-            req.flash('success', "Welcome to GO!Camping" + user.username);
+            req.flash('success', "Welcome to GO!Camping" + " " + user.username);
             res.redirect('/campground');
         });
     });
